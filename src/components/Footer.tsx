@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { asset } from '../asset';
 
 export function FooterFull() {
   return (
@@ -15,7 +16,7 @@ export function FooterFull() {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-            <img src="/uploads/Logo.png" style={{ width: 36, height: 36, borderRadius: 8, objectFit: 'cover' }} alt="" />
+            <img src={asset('/uploads/Logo.png')} style={{ width: 36, height: 36, borderRadius: 8, objectFit: 'cover' }} alt="" />
             <span style={{ fontFamily: "'Source Serif 4',serif", fontSize: 19, fontWeight: 600, color: 'oklch(0.3 0.06 145)' }}>
               Aaharva
             </span>

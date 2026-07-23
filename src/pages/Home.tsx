@@ -4,6 +4,7 @@ import { FooterFull } from '../components/Footer';
 import { Toast } from '../components/Toast';
 import { useToast } from '../hooks/useCart';
 import { CATEGORIES, PRODUCTS, addToCart, type Product } from '../data';
+import { asset } from '../asset';
 
 const bestsellers = PRODUCTS.filter((p) => p.bestSeller);
 
@@ -103,7 +104,7 @@ export function Home() {
         <div style={{ flex: '0 0 400px', position: 'relative' }}>
           <div style={{ position: 'absolute', inset: 20, background: 'oklch(0.94 0.03 145)', borderRadius: 32, zIndex: 0 }} />
           <img
-            src="/uploads/lite/product (3).jpg"
+            src={asset('/uploads/lite/product (3).jpg')}
             alt="Diabetic Roti Premix"
             style={{
               position: 'relative',

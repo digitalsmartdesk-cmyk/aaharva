@@ -1,3 +1,5 @@
+import { asset } from './asset';
+
 export interface Category {
   key: string;
   label: string;
@@ -39,7 +41,7 @@ export interface CartTotals {
   count: number;
 }
 
-export const CATEGORIES: Category[] = [
+const RAW_CATEGORIES: Category[] = [
   { key: 'flours', label: 'Flours & Roti Premixes', short: 'Flours', color: 'oklch(0.47 0.09 145)', tint: 'oklch(0.94 0.03 145)', desc: 'Low-GI atta and roti mixes for everyday rotis', sampleImg: '/uploads/lite/product (1).jpg' },
   { key: 'millets', label: 'Millets & Whole Grains', short: 'Millets & Grains', color: 'oklch(0.52 0.1 160)', tint: 'oklch(0.94 0.03 160)', desc: 'Whole grains to swap in for polished rice and refined wheat', sampleImg: '/uploads/lite/product (4).jpg' },
   { key: 'breakfast', label: 'Breakfast & Meal Mixes', short: 'Breakfast Mixes', color: 'oklch(0.64 0.14 45)', tint: 'oklch(0.95 0.035 45)', desc: 'Dosa, idli, poha, upma and porridge, ready in minutes', sampleImg: '/uploads/lite/product (10).jpg' },
@@ -49,7 +51,9 @@ export const CATEGORIES: Category[] = [
   { key: 'mealkits', label: 'Ready Meal Kits', short: 'Meal Kits', color: 'oklch(0.72 0.13 85)', tint: 'oklch(0.95 0.04 85)', desc: 'Complete one-pot meals, just add water', sampleImg: '/uploads/lite/product (29).jpg' },
 ];
 
-export const PRODUCTS: Product[] = [
+export const CATEGORIES: Category[] = RAW_CATEGORIES.map((c) => ({ ...c, sampleImg: asset(c.sampleImg) }));
+
+const RAW_PRODUCTS: Product[] = [
   { id: 1, name: 'Low GI Multigrain Atta', category: 'flours', weight: '5 kg', price: 449, gi: 48, img: '/uploads/lite/product (1).jpg', bestSeller: true,
     blurb: 'Everyday rotis made from 7 super grains instead of refined wheat.',
     benefits: ['Low GI — helps manage blood sugar', 'High in fibre — supports digestion', 'Rich in protein — keeps you fuller for longer'] },
@@ -141,6 +145,8 @@ export const PRODUCTS: Product[] = [
     blurb: 'A complete millet upma kit, ready in 20 minutes.',
     benefits: ['Goodness of millets — high in fibre & protein', 'Ready in 20 minutes', 'No preservatives'] },
 ];
+
+export const PRODUCTS: Product[] = RAW_PRODUCTS.map((p) => ({ ...p, img: asset(p.img) }));
 
 export function getProduct(id: number): Product | undefined {
   return PRODUCTS.find((p) => Number(p.id) === Number(id));

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
+import { asset } from '../asset';
 
 type ActivePage = 'home' | 'shop' | 'subscription' | 'product';
 
@@ -40,7 +41,7 @@ export function Header({
     >
       <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <img
-          src="/uploads/Logo.png"
+          src={asset('/uploads/Logo.png')}
           alt="Aaharva"
           style={{ width: 42, height: 42, borderRadius: 10, objectFit: 'cover', flexShrink: 0 }}
         />
