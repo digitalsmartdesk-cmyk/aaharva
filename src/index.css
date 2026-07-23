@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  background: oklch(0.97 0.014 80);
+  font-family: 'Work Sans', sans-serif;
+  color: oklch(0.22 0.02 50);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+select {
+  font-family: 'Work Sans', sans-serif;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
