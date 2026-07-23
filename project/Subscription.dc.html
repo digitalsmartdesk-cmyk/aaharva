@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: oklch(0.97 0.014 80); font-family: 'Work Sans', sans-serif; color: oklch(0.22 0.02 50); }
+    a { text-decoration: none; color: inherit; }
+    button { font-family: 'Work Sans', sans-serif; }
+  </style>
+</helmet>
+
+<dc-import name="Header" active="subscription" hint-size="100%,73px"></dc-import>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; bottom:28px; left:50%; transform:translateX(-50%); background:oklch(0.22 0.02 50); color:white; padding:12px 22px; border-radius:10px; font-size:14px; font-weight:500; z-index:100;">{{ toast }}</div>
+</sc-if>
+
+<section style="max-width:1200px; margin:0 auto; padding:56px 40px 20px; text-align:center;">
+  <div style="display:inline-block; padding:6px 14px; border-radius:999px; background:oklch(0.94 0.03 145); color:oklch(0.32 0.08 145); font-size:13px; font-weight:600; margin-bottom:18px;">MONTHLY SUBSCRIPTION</div>
+  <h1 style="font-family:'Source Serif 4',serif; font-size:42px; font-weight:600; margin:0 0 14px;">Build a box that restocks itself.</h1>
+  <p style="font-size:16px; color:oklch(0.46 0.02 50); max-width:600px; margin:0 auto;">Start from a curated box or pick your own products. Every subscribed order ships monthly and saves 15%, automatically.</p>
+</section>
+
+<section style="max-width:1200px; margin:0 auto; padding:48px 40px 0;">
+  <h2 style="font-family:'Source Serif 4',serif; font-size:26px; font-weight:600; margin:0 0 22px;">Start from a curated box</h2>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+    <sc-for list="{{ boxes }}" as="box" hint-placeholder-count="4">
+      <div style="background:white; border-radius:16px; border:1px solid oklch(0.89 0.016 80); padding:20px; display:flex; flex-direction:column; gap:12px;">
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:4px; border-radius:10px; overflow:hidden;">
+          <sc-for list="{{ box.thumbs }}" as="img" hint-placeholder-count="4">
+            <img src="{{ img }}" style="width:100%; height:64px; object-fit:cover; display:block;" />
+          </sc-for>
+        </div>
+        <div>
+          <div style="font-size:16px; font-weight:600; margin-bottom:4px;">{{ box.name }}</div>
+          <div style="font-size:12px; color:oklch(0.5 0.02 50); line-height:1.5;">{{ box.desc }}</div>
+        </div>
+        <div style="font-size:12px; color:oklch(0.5 0.02 50); line-height:1.6;">{{ box.itemsLine }}</div>
+        <div style="display:flex; align-items:baseline; gap:8px; margin-top:auto;">
+          <span style="font-size:18px; font-weight:700;">₹{{ box.discounted }}</span>
+          <span style="font-size:12px; color:oklch(0.55 0.02 50); text-decoration:line-through;">₹{{ box.subtotal }}</span>
+          <span style="font-size:11px; font-weight:700; color:oklch(0.42 0.1 145);">/mo</span>
+        </div>
+        <button onClick="{{ box.addAll }}" style="padding:11px; border-radius:9px; background:oklch(0.42 0.09 145); color:white; font-weight:700; font-size:13px; border:none; cursor:pointer;">Add box to my subscription</button>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1200px; margin:0 auto; padding:64px 40px 0; display:flex; gap:48px; align-items:flex-start;">
+  <div style="flex:1; min-width:0;">
+    <h2 style="font-family:'Source Serif 4',serif; font-size:26px; font-weight:600; margin:0 0 8px;">Or build your own</h2>
+    <p style="font-size:14px; color:oklch(0.46 0.02 50); margin:0 0 20px;">Pick freely from all seven categories — everything ships together, monthly.</p>
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;">
+      <sc-if value="{{ isAllActive }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ selectAll }}" style="padding:8px 14px; border-radius:999px; border:none; cursor:pointer; font-size:12px; font-weight:700; background:oklch(0.32 0.08 145); color:white;">All</button>
+      </sc-if>
+      <sc-if value="{{ isAllInactive }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ selectAll }}" style="padding:8px 14px; border-radius:999px; border:1px solid oklch(0.86 0.02 80); cursor:pointer; font-size:12px; font-weight:600; background:white; color:oklch(0.4 0.02 50);">All</button>
+      </sc-if>
+      <sc-for list="{{ categoryPills }}" as="cat" hint-placeholder-count="7">
+        <sc-if value="{{ cat.active }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ cat.select }}" style="padding:8px 14px; border-radius:999px; border:none; cursor:pointer; font-size:12px; font-weight:700; background:{{ cat.color }}; color:white;">{{ cat.short }}</button>
+        </sc-if>
+        <sc-if value="{{ cat.inactive }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ cat.select }}" style="padding:8px 14px; border-radius:999px; border:1px solid oklch(0.86 0.02 80); cursor:pointer; font-size:12px; font-weight:600; background:white; color:oklch(0.4 0.02 50);">{{ cat.short }}</button>
+        </sc-if>
+      </sc-for>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px; background:white; border-radius:14px; border:1px solid oklch(0.89 0.016 80); overflow:hidden;">
+      <sc-for list="{{ pickerProducts }}" as="p" hint-placeholder-count="6">
+        <div style="display:flex; align-items:center; gap:14px; padding:12px 16px; border-bottom:1px solid oklch(0.93 0.012 80);">
+          <img src="{{ p.img }}" style="width:44px; height:44px; border-radius:8px; object-fit:cover; flex-shrink:0;" />
+          <div style="flex:1; min-width:0;">
+            <div style="font-size:13px; font-weight:600;">{{ p.name }}</div>
+            <div style="font-size:11px; color:oklch(0.55 0.02 50);">{{ p.weight }} · GI {{ p.gi }} · ₹{{ p.price }}</div>
+          </div>
+          <sc-if value="{{ p.inCart }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; align-items:center; gap:6px; background:oklch(0.94 0.03 145); border-radius:8px; padding:4px 6px;">
+              <button onClick="{{ p.dec }}" style="width:20px; height:20px; border-radius:5px; border:none; background:white; cursor:pointer; font-weight:700; font-size:12px;">–</button>
+              <span style="font-size:12px; font-weight:700; min-width:12px; text-align:center;">{{ p.qty }}</span>
+              <button onClick="{{ p.inc }}" style="width:20px; height:20px; border-radius:5px; border:none; background:white; cursor:pointer; font-weight:700; font-size:12px;">+</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ p.notInCart }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ p.add }}" style="padding:7px 14px; border-radius:8px; background:oklch(0.42 0.09 145); color:white; font-weight:600; font-size:12px; border:none; cursor:pointer; flex-shrink:0;">Add</button>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="flex:0 0 340px; position:sticky; top:90px; background:white; border-radius:16px; border:1px solid oklch(0.89 0.016 80); padding:22px;">
+    <sc-if value="{{ confirmed }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center; padding:20px 0;">
+        <div style="font-size:32px; margin-bottom:12px;">✓</div>
+        <div style="font-family:'Source Serif 4',serif; font-size:19px; font-weight:600; margin-bottom:8px;">You're subscribed</div>
+        <p style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.6; margin:0 0 16px;">Your monthly box is set. First delivery arrives in 3–5 days, then automatically every month — skip or edit anytime.</p>
+        <a href="Shop.dc.html" style="font-size:13px; font-weight:700; color:oklch(0.32 0.08 145);">Keep browsing products →</a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ notConfirmed }}" hint-placeholder-val="{{ true }}">
+      <div style="font-size:16px; font-weight:700; margin-bottom:14px;">Your monthly box</div>
+      <sc-if value="{{ cartEmpty }}" hint-placeholder-val="{{ false }}">
+        <p style="font-size:13px; color:oklch(0.55 0.02 50); text-align:center; padding:24px 0;">Add a curated box or pick products to get started.</p>
+      </sc-if>
+      <div style="max-height:280px; overflow-y:auto; margin-bottom:14px;">
+        <sc-for list="{{ cartDetailed }}" as="i" hint-placeholder-count="0">
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; padding:7px 0; border-bottom:1px solid oklch(0.93 0.012 80);">
+            <span style="flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ i.qty }}× {{ i.product.name }}</span>
+            <span style="font-weight:600; margin-left:8px;">₹{{ i.lineTotal }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size:13px; color:oklch(0.5 0.02 50); margin-bottom:6px;"><span>Subtotal</span><span>₹{{ subtotal }}</span></div>
+      <div style="display:flex; justify-content:space-between; font-size:13px; color:oklch(0.42 0.1 145); margin-bottom:6px;"><span>Subscription discount (15%)</span><span>−₹{{ discount }}</span></div>
+      <div style="display:flex; justify-content:space-between; font-size:17px; font-weight:700; margin-bottom:4px;"><span>Monthly total</span><span>₹{{ total }}</span></div>
+      <div style="font-size:11px; color:oklch(0.55 0.02 50); margin-bottom:16px;">Delivered every month · skip or cancel anytime</div>
+      <button onClick="{{ confirm }}" disabled="{{ cartEmpty }}" style="width:100%; padding:13px; border-radius:10px; background:oklch(0.42 0.09 145); color:white; font-weight:700; font-size:14px; border:none; cursor:pointer;">Confirm subscription</button>
+    </sc-if>
+  </div>
+</section>
+
+<section style="max-width:900px; margin:88px auto 0; padding:0 40px;">
+  <h2 style="font-family:'Source Serif 4',serif; font-size:26px; font-weight:600; margin:0 0 24px; text-align:center;">Subscription FAQs</h2>
+  <div style="display:flex; flex-direction:column; gap:14px;">
+    <div style="background:white; border-radius:12px; border:1px solid oklch(0.89 0.016 80); padding:18px 20px;">
+      <div style="font-size:14px; font-weight:700; margin-bottom:6px;">Can I skip a month?</div>
+      <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.6;">Yes — skip, pause or push your delivery from your account, anytime before it ships.</div>
+    </div>
+    <div style="background:white; border-radius:12px; border:1px solid oklch(0.89 0.016 80); padding:18px 20px;">
+      <div style="font-size:14px; font-weight:700; margin-bottom:6px;">Can I change what's in my box?</div>
+      <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.6;">Swap products, adjust quantities, or add extras right up until your next order is processed.</div>
+    </div>
+    <div style="background:white; border-radius:12px; border:1px solid oklch(0.89 0.016 80); padding:18px 20px;">
+      <div style="font-size:14px; font-weight:700; margin-bottom:6px;">Is the 15% discount permanent?</div>
+      <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.6;">Yes, on every subscribed order — no minimums, no codes, applied automatically at checkout.</div>
+    </div>
+    <div style="background:white; border-radius:12px; border:1px solid oklch(0.89 0.016 80); padding:18px 20px;">
+      <div style="font-size:14px; font-weight:700; margin-bottom:6px;">Can I cancel anytime?</div>
+      <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.6;">Yes, with no lock-in and no cancellation fee — cancel from your account whenever you like.</div>
+    </div>
+  </div>
+</section>
+
+<footer style="margin-top:70px; border-top:1px solid oklch(0.89 0.016 80); background:white;">
+  <div style="max-width:1200px; margin:0 auto; padding:32px 40px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+    <p style="font-size:12px; color:oklch(0.58 0.02 50); margin:0; max-width:600px; line-height:1.6;">Aaharva products are designed to support balanced, low-GI nutrition and are not a substitute for medical treatment. Please consult your doctor or dietician for advice specific to you.</p>
+    <p style="font-size:12px; color:oklch(0.6 0.02 50); margin:0; white-space:nowrap;">© 2026 Aaharva</p>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const BOX_DEFS = [
+  { name: 'Diabetic Starter Box', desc: 'The essentials for someone newly managing blood sugar.', itemIds: [3, 15, 4, 28] },
+  { name: 'Breakfast Box', desc: 'A full week of low-GI dosa, idli, poha and porridge.', itemIds: [10, 11, 12, 14] },
+  { name: 'Protein Box', desc: 'Plant protein staples for strength and steady energy.', itemIds: [16, 17, 18, 22] },
+  { name: 'Snacking Box', desc: 'Roasted, not fried — snacking that won\u2019t spike you.', itemIds: [20, 21, 23, 24] },
+];
+
+class Component extends DCLogic {
+  state = { products: [], categories: [], selectedCat: 'all', cart: [], confirmed: false, toast: null };
+
+  async componentDidMount() {
+    const mod = await import('./data.js');
+    this._mod = mod;
+    this.setState({ products: mod.PRODUCTS, categories: mod.CATEGORIES });
+    this.refreshCart();
+    this._handler = () => this.refreshCart();
+    window.addEventListener('aaharva-cart-updated', this._handler);
+  }
+  componentWillUnmount() {
+    if (this._handler) window.removeEventListener('aaharva-cart-updated', this._handler);
+  }
+  refreshCart() { if (this._mod) this.setState({ cart: this._mod.getCart() }); }
+  qtyFor(id) { const it = this.state.cart.find(c => c.id === id); return it ? it.qty : 0; }
+
+  addToBox(p) {
+    this._mod.addToCart(p.id, 1);
+    this.refreshCart();
+  }
+  setQty(id, qty) { this._mod.updateQty(id, qty); this.refreshCart(); }
+
+  addBox(box) {
+    box.itemIds.forEach(id => this._mod.addToCart(id, 1));
+    this.refreshCart();
+    this.setState({ toast: `${box.name} added to your subscription` });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ toast: null }), 2000);
+  }
+
+  renderVals() {
+    if (!this._mod) return { boxes: [], categoryPills: [], pickerProducts: [], cartDetailed: [], notConfirmed: true };
+    const boxes = BOX_DEFS.map(b => {
+      const items = b.itemIds.map(id => this._mod.getProduct(id));
+      const subtotal = items.reduce((s, p) => s + p.price, 0);
+      const discounted = Math.round(subtotal * 0.85);
+      return { ...b, thumbs: items.map(p => p.img), itemsLine: items.map(p => p.name).join(' · '), subtotal, discounted, addAll: () => this.addBox(b) };
+    });
+    const cat = this.state.selectedCat;
+    const categoryPills = this.state.categories.map(c => ({ ...c, active: cat === c.key, inactive: cat !== c.key, select: () => this.setState({ selectedCat: c.key }) }));
+    const pickerProducts = (cat === 'all' ? this.state.products : this.state.products.filter(p => p.category === cat)).map(p => {
+      const qty = this.qtyFor(p.id);
+      return { ...p, qty, inCart: qty > 0, notInCart: qty === 0, add: () => this.addToBox(p), inc: () => this.setQty(p.id, qty + 1), dec: () => this.setQty(p.id, qty - 1) };
+    });
+    const totals = this._mod.cartTotals(true);
+    const cartDetailed = totals.items.map(i => ({ ...i, lineTotal: i.product.price * i.qty }));
+    return {
+      boxes,
+      categoryPills,
+      isAllActive: cat === 'all', isAllInactive: cat !== 'all',
+      selectAll: () => this.setState({ selectedCat: 'all' }),
+      pickerProducts,
+      cartDetailed, cartEmpty: cartDetailed.length === 0,
+      subtotal: totals.subtotal, discount: totals.discount, total: totals.total,
+      confirmed: this.state.confirmed, notConfirmed: !this.state.confirmed,
+      confirm: () => { if (cartDetailed.length) this.setState({ confirmed: true }); },
+      toast: this.state.toast,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

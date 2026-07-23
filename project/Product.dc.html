@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: oklch(0.97 0.014 80); font-family: 'Work Sans', sans-serif; color: oklch(0.22 0.02 50); }
+    a { text-decoration: none; color: inherit; }
+    select, button { font-family: 'Work Sans', sans-serif; }
+  </style>
+</helmet>
+
+<dc-import name="Header" active="shop" hint-size="100%,73px"></dc-import>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; bottom:28px; left:50%; transform:translateX(-50%); background:oklch(0.22 0.02 50); color:white; padding:12px 22px; border-radius:10px; font-size:14px; font-weight:500; z-index:100;">{{ toast }}</div>
+</sc-if>
+
+<section style="max-width:1160px; margin:0 auto; padding:32px 40px 0;">
+  <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:oklch(0.5 0.02 50); margin-bottom:8px;">
+    <a href="Home.dc.html">Home</a><span>/</span><a href="{{ p.catHref }}">{{ p.catLabel }}</a><span>/</span><span style="color:oklch(0.3 0.02 50); font-weight:600;">{{ p.name }}</span>
+  </div>
+  <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+    <select value="{{ selectedIdStr }}" onChange="{{ onSwitch }}" style="padding:8px 12px; border-radius:8px; border:1px solid oklch(0.86 0.02 80); font-size:13px; background:white; color:oklch(0.4 0.02 50);">
+      <sc-for list="{{ options }}" as="o" hint-placeholder-count="30">
+        <option value="{{ o.id }}">{{ o.name }}</option>
+      </sc-for>
+    </select>
+  </div>
+</section>
+
+<section style="max-width:1160px; margin:0 auto; padding:8px 40px 20px; display:flex; gap:56px;">
+  <div style="flex:0 0 440px;">
+    <div style="border-radius:20px; overflow:hidden; background:white; border:1px solid oklch(0.89 0.016 80);"><img src="{{ p.img }}" alt="{{ p.name }}" style="width:100%; display:block;" /></div>
+  </div>
+  <div style="flex:1; min-width:320px;">
+    <div style="font-size:12px; font-weight:700; letter-spacing:0.3px; color:{{ p.catColor }}; margin-bottom:10px;">{{ p.catLabelUpper }}</div>
+    <h1 style="font-family:'Source Serif 4',serif; font-size:34px; font-weight:600; margin:0 0 10px;">{{ p.name }}</h1>
+    <p style="font-size:15px; color:oklch(0.46 0.02 50); margin:0 0 18px; line-height:1.6;">{{ p.blurb }}</p>
+    <div style="display:flex; align-items:center; gap:14px; margin-bottom:22px;">
+      <span style="font-size:28px; font-weight:700;">₹{{ p.price }}</span>
+      <span style="font-size:13px; color:oklch(0.55 0.02 50);">{{ p.weight }}</span>
+      <span style="font-size:12px; font-weight:700; color:oklch(0.42 0.1 145); background:oklch(0.94 0.03 145); padding:4px 10px; border-radius:6px;">Glycemic Index {{ p.gi }}</span>
+    </div>
+
+    <sc-if value="{{ p.moderation }}" hint-placeholder-val="{{ false }}">
+      <div style="background:oklch(0.96 0.03 75); border:1px solid oklch(0.86 0.05 75); color:oklch(0.4 0.06 60); font-size:13px; padding:12px 16px; border-radius:10px; margin-bottom:22px; line-height:1.5;">Naturally higher in sugar than our GI-focused staples — a great treat in small, mindful portions.</div>
+    </sc-if>
+
+    <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:26px;">
+      <sc-for list="{{ p.benefits }}" as="b" hint-placeholder-count="3">
+        <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:oklch(0.3 0.02 50);">
+          <span style="width:8px; height:8px; border-radius:50%; background:{{ p.catColor }}; margin-top:6px; flex-shrink:0;"></span>
+          <span>{{ b }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+      <div style="display:flex; align-items:center; gap:10px; border:1px solid oklch(0.86 0.02 80); border-radius:10px; padding:6px 10px;">
+        <button onClick="{{ decQty }}" style="width:26px; height:26px; border-radius:6px; border:none; background:oklch(0.96 0.012 80); cursor:pointer; font-weight:700;">–</button>
+        <span style="font-size:14px; font-weight:700; min-width:16px; text-align:center;">{{ qty }}</span>
+        <button onClick="{{ incQty }}" style="width:26px; height:26px; border-radius:6px; border:none; background:oklch(0.96 0.012 80); cursor:pointer; font-weight:700;">+</button>
+      </div>
+      <span style="font-size:13px; color:oklch(0.5 0.02 50);">{{ inCartLabel }}</span>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <button onClick="{{ addOneTime }}" style="padding:14px 24px; border-radius:10px; background:white; border:1px solid oklch(0.3 0.06 145); color:oklch(0.3 0.06 145); font-weight:700; font-size:14px; cursor:pointer;">Add to box</button>
+      <button onClick="{{ addSubscribe }}" style="padding:14px 24px; border-radius:10px; background:oklch(0.42 0.09 145); border:none; color:white; font-weight:700; font-size:14px; cursor:pointer;">Subscribe &amp; save 15%</button>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1160px; margin:0 auto; padding:60px 40px 20px;">
+  <h2 style="font-family:'Source Serif 4',serif; font-size:24px; font-weight:600; margin:0 0 20px;">More from {{ p.catLabel }}</h2>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+    <sc-for list="{{ relatedProducts }}" as="r" hint-placeholder-count="4">
+      <a onClick="{{ r.select }}" style="display:block; background:white; border-radius:16px; overflow:hidden; border:1px solid oklch(0.89 0.016 80); cursor:pointer;">
+        <div style="height:150px; overflow:hidden;"><img src="{{ r.img }}" alt="{{ r.name }}" style="width:100%; height:100%; object-fit:cover; display:block;" /></div>
+        <div style="padding:14px 16px 18px;">
+          <div style="font-size:14px; font-weight:600; margin-bottom:6px;">{{ r.name }}</div>
+          <div style="font-size:15px; font-weight:700;">₹{{ r.price }}</div>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<footer style="margin-top:70px; border-top:1px solid oklch(0.89 0.016 80); background:white;">
+  <div style="max-width:1160px; margin:0 auto; padding:32px 40px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+    <p style="font-size:12px; color:oklch(0.58 0.02 50); margin:0; max-width:600px; line-height:1.6;">Aaharva products are designed to support balanced, low-GI nutrition and are not a substitute for medical treatment. Please consult your doctor or dietician for advice specific to you.</p>
+    <p style="font-size:12px; color:oklch(0.6 0.02 50); margin:0; white-space:nowrap;">© 2026 Aaharva</p>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;productId&quot;: {&quot;editor&quot;: &quot;int&quot;, &quot;default&quot;: 3, &quot;min&quot;: 1, &quot;max&quot;: 30, &quot;tsType&quot;: &quot;number&quot;}}">
+class Component extends DCLogic {
+  state = { products: [], selectedId: null, qty: 1, cart: [], toast: null };
+
+  async componentDidMount() {
+    const mod = await import('./data.js');
+    this._mod = mod;
+    this.setState({ products: mod.PRODUCTS, selectedId: this.props.productId || 3 });
+    this.refreshCart();
+    this._handler = () => this.refreshCart();
+    window.addEventListener('aaharva-cart-updated', this._handler);
+  }
+  componentWillUnmount() {
+    if (this._handler) window.removeEventListener('aaharva-cart-updated', this._handler);
+  }
+  refreshCart() { if (this._mod) this.setState({ cart: this._mod.getCart() }); }
+
+  add(subscribePref) {
+    const p = this._mod.getProduct(this.state.selectedId);
+    this._mod.addToCart(p.id, this.state.qty);
+    if (subscribePref) localStorage.setItem('aaharva_subscribe_pref', '1');
+    this.refreshCart();
+    this.setState({ toast: subscribePref ? `${p.name} added — subscription applied` : `Added ${p.name} to your box`, qty: 1 });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ toast: null }), 2000);
+  }
+
+  renderVals() {
+    if (!this._mod || !this.state.selectedId) return { p: {}, options: [], relatedProducts: [] };
+    const product = this._mod.getProduct(this.state.selectedId);
+    const cat = this._mod.getCategory(product.category);
+    const cartItem = this.state.cart.find(c => c.id === product.id);
+    const p = {
+      ...product, catLabel: cat.label, catLabelUpper: cat.short.toUpperCase(), catColor: cat.color,
+      catHref: `Shop.dc.html?cat=${cat.key}`,
+    };
+    return {
+      p,
+      qty: this.state.qty,
+      incQty: () => this.setState({ qty: this.state.qty + 1 }),
+      decQty: () => this.setState({ qty: Math.max(1, this.state.qty - 1) }),
+      inCartLabel: cartItem ? `${cartItem.qty} already in your box` : 'Not yet in your box',
+      addOneTime: () => this.add(false),
+      addSubscribe: () => this.add(true),
+      selectedIdStr: String(this.state.selectedId),
+      options: this.state.products.map(o => ({ id: o.id, name: o.name })),
+      onSwitch: (e) => this.setState({ selectedId: Number(e.target.value) }),
+      relatedProducts: this._mod.related(product, 4).map(r => ({ ...r, select: () => this.setState({ selectedId: r.id, qty: 1 }) })),
+      toast: this.state.toast,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

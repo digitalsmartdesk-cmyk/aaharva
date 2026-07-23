@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: oklch(0.97 0.014 80); font-family: 'Work Sans', sans-serif; color: oklch(0.22 0.02 50); }
+    a { text-decoration: none; color: inherit; }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</helmet>
+
+<dc-import name="Header" active="home" hint-size="100%,73px"></dc-import>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; bottom:28px; left:50%; transform:translateX(-50%); background:oklch(0.22 0.02 50); color:white; padding:12px 22px; border-radius:10px; font-size:14px; font-weight:500; z-index:100; animation:toastIn 0.2s ease;">{{ toast }}</div>
+</sc-if>
+
+<section style="max-width:1200px; margin:0 auto; padding:64px 40px 40px; display:flex; align-items:center; gap:56px;">
+  <div style="flex:1; min-width:320px;">
+    <div style="display:inline-block; padding:6px 14px; border-radius:999px; background:oklch(0.94 0.03 145); color:oklch(0.32 0.08 145); font-size:13px; font-weight:600; letter-spacing:0.3px; margin-bottom:20px;">FOR DIABETIC &amp; PRE-DIABETIC HOUSEHOLDS</div>
+    <h1 style="font-family:'Source Serif 4',serif; font-size:52px; line-height:1.08; font-weight:600; margin:0 0 20px; color:oklch(0.2 0.03 50);">Everyday food that keeps blood sugar in mind.</h1>
+    <p style="font-size:17px; line-height:1.6; color:oklch(0.46 0.02 50); max-width:480px; margin:0 0 32px;">Low-GI atta, millets, breakfast mixes and snacks — sorted by what they're made of and what they're for, so you always know what to reach for. Delivered monthly, so the kitchen never runs short.</p>
+    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:32px;">
+      <a href="Shop.dc.html" style="padding:14px 26px; border-radius:10px; background:oklch(0.42 0.09 145); color:white; font-weight:600; font-size:15px;">Shop all products</a>
+      <a href="Subscription.dc.html" style="padding:14px 26px; border-radius:10px; background:white; border:1px solid oklch(0.85 0.02 80); color:oklch(0.24 0.02 50); font-weight:600; font-size:15px;">Build your monthly box</a>
+    </div>
+    <div style="display:flex; gap:24px; flex-wrap:wrap; font-size:13px; color:oklch(0.46 0.02 50); font-weight:500;">
+      <span>100% Vegetarian</span><span>·</span><span>No Maida, No Added Sugar</span><span>·</span><span>FSSAI Certified</span>
+    </div>
+  </div>
+  <div style="flex:0 0 400px; position:relative;">
+    <div style="position:absolute; inset:20px; background:oklch(0.94 0.03 145); border-radius:32px; z-index:0;"></div>
+    <img src="uploads/lite/product (3).jpg" alt="Diabetic Roti Premix" style="position:relative; z-index:1; width:100%; border-radius:24px; box-shadow:0 24px 48px -20px oklch(0.3 0.05 145 / 0.35); display:block;" />
+  </div>
+</section>
+
+<section style="max-width:1200px; margin:0 auto; padding:28px 40px 0;">
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:24px 0; border-top:1px solid oklch(0.89 0.016 80); border-bottom:1px solid oklch(0.89 0.016 80);">
+    <div style="text-align:center; font-size:13px; font-weight:600; color:oklch(0.4 0.02 50);">Low Glycemic Index<div style="font-weight:400; color:oklch(0.55 0.02 50); margin-top:4px;">Helps manage blood sugar</div></div>
+    <div style="text-align:center; font-size:13px; font-weight:600; color:oklch(0.4 0.02 50); border-left:1px solid oklch(0.89 0.016 80);">High in Fibre &amp; Protein<div style="font-weight:400; color:oklch(0.55 0.02 50); margin-top:4px;">Keeps you fuller, longer</div></div>
+    <div style="text-align:center; font-size:13px; font-weight:600; color:oklch(0.4 0.02 50); border-left:1px solid oklch(0.89 0.016 80);">No Artificial Anything<div style="font-weight:400; color:oklch(0.55 0.02 50); margin-top:4px;">No colours, flavours, preservatives</div></div>
+    <div style="text-align:center; font-size:13px; font-weight:600; color:oklch(0.4 0.02 50); border-left:1px solid oklch(0.89 0.016 80);">Lab-Tested Batches<div style="font-weight:400; color:oklch(0.55 0.02 50); margin-top:4px;">Every SKU, every batch</div></div>
+  </div>
+</section>
+
+<section style="max-width:1200px; margin:0 auto; padding:72px 40px 20px;">
+  <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:32px; flex-wrap:wrap; gap:12px;">
+    <div>
+      <h2 style="font-family:'Source Serif 4',serif; font-size:32px; font-weight:600; margin:0 0 6px;">Shop by what it's made of</h2>
+      <p style="margin:0; color:oklch(0.46 0.02 50); font-size:15px;">Every SKU is sorted into one of seven groups, by ingredient and how you'll use it.</p>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
+    <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="7">
+      <a href="{{ cat.href }}" style="display:block; background:white; border-radius:16px; overflow:hidden; border:1px solid oklch(0.89 0.016 80);">
+        <div style="height:140px; overflow:hidden;"><img src="{{ cat.sampleImg }}" alt="{{ cat.label }}" style="width:100%; height:100%; object-fit:cover; display:block;" /></div>
+        <div style="padding:16px 18px 20px;">
+          <div style="font-size:12px; font-weight:700; letter-spacing:0.3px; color:{{ cat.color }}; margin-bottom:6px;">{{ cat.short }}</div>
+          <div style="font-size:15px; font-weight:600; margin-bottom:6px; line-height:1.3;">{{ cat.label }}</div>
+          <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.4;">{{ cat.desc }}</div>
+        </div>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1200px; margin:0 auto; padding:72px 40px 20px;">
+  <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:32px; flex-wrap:wrap; gap:12px;">
+    <div>
+      <h2 style="font-family:'Source Serif 4',serif; font-size:32px; font-weight:600; margin:0 0 6px;">Most reordered</h2>
+      <p style="margin:0; color:oklch(0.46 0.02 50); font-size:15px;">The staples our subscribers never let run out.</p>
+    </div>
+    <a href="Shop.dc.html" style="font-size:14px; font-weight:600; color:oklch(0.32 0.08 145); white-space:nowrap;">View full catalog →</a>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+    <sc-for list="{{ bestsellers }}" as="p" hint-placeholder-count="6">
+      <div style="background:white; border-radius:16px; overflow:hidden; border:1px solid oklch(0.89 0.016 80); display:flex; flex-direction:column;">
+        <a href="Product.dc.html" style="display:block; height:180px; overflow:hidden; background:oklch(0.96 0.012 80);"><img src="{{ p.img }}" alt="{{ p.name }}" style="width:100%; height:100%; object-fit:cover; display:block;" /></a>
+        <div style="padding:16px 18px 20px; display:flex; flex-direction:column; gap:8px; flex:1;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:11px; font-weight:700; color:oklch(0.42 0.1 145); background:oklch(0.94 0.03 145); padding:3px 8px; border-radius:6px;">GI {{ p.gi }}</span>
+            <span style="font-size:12px; color:oklch(0.55 0.02 50);">{{ p.weight }}</span>
+          </div>
+          <div style="font-size:16px; font-weight:600; line-height:1.3;">{{ p.name }}</div>
+          <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.4; flex:1;">{{ p.blurb }}</div>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-top:6px;">
+            <span style="font-size:17px; font-weight:700;">₹{{ p.price }}</span>
+            <button onClick="{{ p.addFn }}" style="padding:9px 16px; border-radius:8px; background:oklch(0.42 0.09 145); color:white; font-weight:600; font-size:13px; border:none; cursor:pointer;">Add to box</button>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section style="max-width:1200px; margin:0 auto; padding:80px 40px 20px;">
+  <h2 style="font-family:'Source Serif 4',serif; font-size:32px; font-weight:600; margin:0 0 8px; text-align:center;">How the subscription works</h2>
+  <p style="text-align:center; color:oklch(0.46 0.02 50); font-size:15px; margin:0 0 40px;">Set it up once. We handle the reordering.</p>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px;">
+    <div>
+      <div style="width:36px; height:36px; border-radius:50%; background:oklch(0.42 0.09 145); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; margin-bottom:14px;">1</div>
+      <div style="font-weight:600; margin-bottom:6px; font-size:15px;">Pick your staples</div>
+      <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.5;">Choose any products yourself, or start from a curated box like Diabetic Starter or Breakfast.</div>
+    </div>
+    <div>
+      <div style="width:36px; height:36px; border-radius:50%; background:oklch(0.42 0.09 145); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; margin-bottom:14px;">2</div>
+      <div style="font-weight:600; margin-bottom:6px; font-size:15px;">Set your frequency</div>
+      <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.5;">Monthly delivery, timed to when your kitchen actually runs out.</div>
+    </div>
+    <div>
+      <div style="width:36px; height:36px; border-radius:50%; background:oklch(0.42 0.09 145); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; margin-bottom:14px;">3</div>
+      <div style="font-weight:600; margin-bottom:6px; font-size:15px;">Save automatically</div>
+      <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.5;">15% off every subscribed order. No codes, applied at your box total.</div>
+    </div>
+    <div>
+      <div style="width:36px; height:36px; border-radius:50%; background:oklch(0.42 0.09 145); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; margin-bottom:14px;">4</div>
+      <div style="font-weight:600; margin-bottom:6px; font-size:15px;">Stay in control</div>
+      <div style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.5;">Skip a month, swap products, or cancel anytime from your box.</div>
+    </div>
+  </div>
+</section>
+
+<section style="max-width:1200px; margin:80px auto 0; padding:0 40px;">
+  <div style="background:oklch(0.32 0.08 145); border-radius:24px; padding:48px; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+    <div style="flex:1; min-width:280px;">
+      <h3 style="font-family:'Source Serif 4',serif; color:white; font-size:28px; font-weight:600; margin:0 0 12px;">Subscribe and save 15% on every order</h3>
+      <p style="color:oklch(0.94 0.02 145); font-size:15px; line-height:1.6; margin:0; max-width:440px;">Example: Diabetic Roti Premix + Mixed Dal Blend + Super Seed Mix — ₹777 one-time, ₹660 on a monthly subscription.</p>
+    </div>
+    <a href="Subscription.dc.html" style="padding:14px 28px; border-radius:10px; background:white; color:oklch(0.32 0.08 145); font-weight:700; font-size:15px; white-space:nowrap;">Build my monthly box</a>
+  </div>
+</section>
+
+<section style="max-width:1200px; margin:0 auto; padding:80px 40px 20px;">
+  <h2 style="font-family:'Source Serif 4',serif; font-size:32px; font-weight:600; margin:0 0 40px; text-align:center;">From kitchens like yours</h2>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+    <div style="background:white; border-radius:16px; border:1px solid oklch(0.89 0.016 80); padding:28px;">
+      <p style="font-size:15px; line-height:1.6; margin:0 0 18px; color:oklch(0.3 0.02 50);">"My father's post-meal sugar readings improved after we switched his roti flour. One simple change, real difference."</p>
+      <div style="font-size:13px; font-weight:600;">Radhika M.</div>
+      <div style="font-size:12px; color:oklch(0.55 0.02 50);">Cooks for her father, Type 2 diabetic</div>
+    </div>
+    <div style="background:white; border-radius:16px; border:1px solid oklch(0.89 0.016 80); padding:28px;">
+      <p style="font-size:15px; line-height:1.6; margin:0 0 18px; color:oklch(0.3 0.02 50);">"I run the subscription for our whole kitchen — millets, dal, snacks. One box, and we stop running out mid-week."</p>
+      <div style="font-size:13px; font-weight:600;">Arjun K.</div>
+      <div style="font-size:12px; color:oklch(0.55 0.02 50);">Home cook, family of four</div>
+    </div>
+    <div style="background:white; border-radius:16px; border:1px solid oklch(0.89 0.016 80); padding:28px;">
+      <p style="font-size:15px; line-height:1.6; margin:0 0 18px; color:oklch(0.3 0.02 50);">"Low-GI, high protein, and it actually tastes good. My post-workout khichdi is this now, every time."</p>
+      <div style="font-size:13px; font-weight:600;">Meera S.</div>
+      <div style="font-size:12px; color:oklch(0.55 0.02 50);">Fitness &amp; weight-management</div>
+    </div>
+  </div>
+</section>
+
+<footer style="margin-top:88px; border-top:1px solid oklch(0.89 0.016 80); background:white;">
+  <div style="max-width:1200px; margin:0 auto; padding:56px 40px 24px; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px;">
+    <div>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;"><img src="uploads/Logo.png" style="width:36px; height:36px; border-radius:8px; object-fit:cover;" /><span style="font-family:'Source Serif 4',serif; font-size:19px; font-weight:600; color:oklch(0.3 0.06 145);">Aaharva</span></div>
+      <p style="font-size:13px; color:oklch(0.5 0.02 50); line-height:1.6; max-width:280px;">Healthy eating, simplified — low-GI staples for diabetic and pre-diabetic kitchens.</p>
+    </div>
+    <div>
+      <div style="font-size:13px; font-weight:700; margin-bottom:14px;">Shop</div>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:13px; color:oklch(0.5 0.02 50);">
+        <a href="Shop.dc.html">All products</a><a href="Subscription.dc.html">Subscription boxes</a><a href="Shop.dc.html?cat=flours">Flours &amp; Roti Premixes</a><a href="Shop.dc.html?cat=mealkits">Meal Kits</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px; font-weight:700; margin-bottom:14px;">Company</div>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:13px; color:oklch(0.5 0.02 50);">
+        <a href="#">Our sourcing</a><a href="#">FSSAI &amp; lab reports</a><a href="#">Contact us</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px; font-weight:700; margin-bottom:14px;">Support</div>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:13px; color:oklch(0.5 0.02 50);">
+        <a href="#">Manage subscription</a><a href="#">Shipping &amp; returns</a><a href="#">FAQs</a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:1200px; margin:0 auto; padding:20px 40px 32px; border-top:1px solid oklch(0.92 0.012 80);">
+    <p style="font-size:12px; color:oklch(0.58 0.02 50); line-height:1.6; margin:0 0 8px;">Aaharva products are designed to support balanced, low-GI nutrition and are not a substitute for medical treatment. Please consult your doctor or dietician for advice specific to you.</p>
+    <p style="font-size:12px; color:oklch(0.6 0.02 50); margin:0;">© 2026 Aaharva. All rights reserved.</p>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { categories: [], bestsellers: [], toast: null };
+
+  async componentDidMount() {
+    const mod = await import('./data.js');
+    this._mod = mod;
+    this.setState({
+      categories: mod.CATEGORIES.map(c => ({ ...c, href: `Shop.dc.html?cat=${c.key}` })),
+      bestsellers: mod.PRODUCTS.filter(p => p.bestSeller),
+    });
+  }
+
+  addToBox(p) {
+    this._mod.addToCart(p.id, 1);
+    this.setState({ toast: `Added ${p.name} to your box` });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ toast: null }), 2000);
+  }
+
+  renderVals() {
+    return {
+      categories: this.state.categories,
+      bestsellers: this.state.bestsellers.map(p => ({ ...p, addFn: () => this.addToBox(p) })),
+      toast: this.state.toast,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
