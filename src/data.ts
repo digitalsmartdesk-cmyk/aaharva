@@ -42,11 +42,11 @@ export interface CartTotals {
 }
 
 const RAW_CATEGORIES: Category[] = [
-  { key: ‘flours’, label: ‘Flours & Roti Premixes’, short: ‘Flours’, color: ‘oklch(0.47 0.09 145)’, tint: ‘oklch(0.94 0.03 145)’, desc: ‘Low-GI atta and roti mixes for everyday rotis’, sampleImg: ‘/uploads/Lite/01_PRD-AH-001_Low_GI_Multigrain_Atta.jpg’ },
-  { key: ‘millets’, label: ‘Millets & Whole Grains’, short: ‘Millets & Grains’, color: ‘oklch(0.52 0.1 160)’, tint: ‘oklch(0.94 0.03 160)’, desc: ‘Whole grains to swap in for polished rice and refined wheat’, sampleImg: ‘/uploads/Lite/03_PRD-AH-004_Foxtail_Millet.jpg’ },
-  { key: ‘breakfast’, label: ‘Breakfast & Meal Mixes’, short: ‘Breakfast Mixes’, color: ‘oklch(0.64 0.14 45)’, tint: ‘oklch(0.95 0.035 45)’, desc: ‘Dosa, idli, poha, upma and porridge, ready in minutes’, sampleImg: ‘/uploads/lite/product (10).jpg’ },
-  { key: ‘pulses’, label: ‘Pulses & Plant Protein’, short: ‘Pulses & Protein’, color: ‘oklch(0.4 0.1 22)’, tint: ‘oklch(0.93 0.025 22)’, desc: ‘Dals, chana and sprouts for slow-release plant protein’, sampleImg: ‘/uploads/Lite/08_PRD-AH-015_Mixed_Dal_Blend.jpg’ },
-  { key: ‘snacks’, label: ‘Roasted Snacks & Dry Fruits’, short: ‘Snacks & Dry Fruits’, color: ‘oklch(0.42 0.09 320)’, tint: ‘oklch(0.93 0.025 320)’, desc: ‘Roasted, not fried — snacking that won’t spike you’, sampleImg: ‘/uploads/Lite/12_PRD-AH-023_Roasted_Almonds.jpg’ },
+  { key: 'flours', label: 'Flours & Roti Premixes', short: 'Flours', color: 'oklch(0.47 0.09 145)', tint: 'oklch(0.94 0.03 145)', desc: 'Low-GI atta and roti mixes for everyday rotis', sampleImg: '/uploads/Lite/01_PRD-AH-001_Low_GI_Multigrain_Atta.jpg' },
+  { key: 'millets', label: 'Millets & Whole Grains', short: 'Millets & Grains', color: 'oklch(0.52 0.1 160)', tint: 'oklch(0.94 0.03 160)', desc: 'Whole grains to swap in for polished rice and refined wheat', sampleImg: '/uploads/Lite/03_PRD-AH-004_Foxtail_Millet.jpg' },
+  { key: 'breakfast', label: 'Breakfast & Meal Mixes', short: 'Breakfast Mixes', color: 'oklch(0.64 0.14 45)', tint: 'oklch(0.95 0.035 45)', desc: 'Dosa, idli, poha, upma and porridge, ready in minutes', sampleImg: '/uploads/lite/product (10).jpg' },
+  { key: 'pulses', label: 'Pulses & Plant Protein', short: 'Pulses & Protein', color: 'oklch(0.4 0.1 22)', tint: 'oklch(0.93 0.025 22)', desc: 'Dals, chana and sprouts for slow-release plant protein', sampleImg: '/uploads/Lite/08_PRD-AH-015_Mixed_Dal_Blend.jpg' },
+  { key: 'snacks', label: 'Roasted Snacks & Dry Fruits', short: 'Snacks & Dry Fruits', color: 'oklch(0.42 0.09 320)', tint: 'oklch(0.93 0.025 320)', desc: "Roasted, not fried — snacking that won't spike you", sampleImg: '/uploads/Lite/12_PRD-AH-023_Roasted_Almonds.jpg' },
   { key: 'seeds', label: 'Seeds & Functional Superfoods', short: 'Seeds & Superfoods', color: 'oklch(0.46 0.07 55)', tint: 'oklch(0.94 0.025 55)', desc: 'Fibre, omega-3 and spices that work quietly in the background', sampleImg: '/uploads/lite/product (22).jpg' },
   { key: 'mealkits', label: 'Ready Meal Kits', short: 'Meal Kits', color: 'oklch(0.72 0.13 85)', tint: 'oklch(0.95 0.04 85)', desc: 'Complete one-pot meals, just add water', sampleImg: '/uploads/lite/product (29).jpg' },
 ];
@@ -58,7 +58,7 @@ const RAW_PRODUCTS: Product[] = [
     blurb: 'Everyday rotis made from 7 super grains instead of refined wheat.',
     benefits: ['Low GI — helps manage blood sugar', 'High in fibre — supports digestion', 'Rich in protein — keeps you fuller for longer'] },
   { id: 2, name: 'High Protein Atta', category: 'flours', weight: '5 kg', price: 479, gi: 45, img: '/uploads/Lite/02_PRD-AH-002_High_Protein_Atta.jpg',
-    blurb: 'Extra protein in the same soft roti you’re used to.',
+    blurb: "Extra protein in the same soft roti you're used to.",
     benefits: ['High in protein — supports muscle health', 'Low GI — helps manage blood sugar', 'Rich in fibre — supports digestion'] },
   { id: 3, name: 'Diabetic Roti Premix', category: 'flours', weight: '1 kg', price: 249, gi: 42, img: '/uploads/lite/product (3).jpg', bestSeller: true,
     blurb: 'Our lowest-GI flour, built with 7 super grains and seeds for daily use.',
